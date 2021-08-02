@@ -38,7 +38,14 @@ services:
       - ./mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     networks:
       - app-network
-
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis:/data
+    networks:
+      - app-network
   nginx:
     image: nginx:alpine
     container_name: laravel-nginx
